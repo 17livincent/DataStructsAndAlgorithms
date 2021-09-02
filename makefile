@@ -12,4 +12,4 @@ binarytree: binarytree.cpp
 	$(CXX) $(CXXFLAGS) -o binarytree binarytree.cpp
 
 clean:
-	rm -f $(TARGETS) *.o
+	rm -f $(TARGETS) *.exe *.o
