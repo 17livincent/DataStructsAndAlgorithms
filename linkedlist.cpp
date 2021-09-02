@@ -10,8 +10,8 @@
 #include <cassert>
 #include "linkedlist.h"
 
-void LinkedList::addNode(Node<short>* head, Node<short>* n) {
-    Node<short>* scan = head;
+void LinkedList::addNode(LLNode<short>* head, LLNode<short>* n) {
+    LLNode<short>* scan = head;
     
     // find the last node
     while(scan->next != NULL) {
@@ -22,8 +22,8 @@ void LinkedList::addNode(Node<short>* head, Node<short>* n) {
     scan->next = n;
 }
 
-void LinkedList::insertNode(Node<short>** head, Node<short>* n, int index) {
-    Node<short>* scan = *head;
+void LinkedList::insertNode(LLNode<short>** head, LLNode<short>* n, int index) {
+    LLNode<short>* scan = *head;
     int countIndex = 0;
     if(index == 0) {
         n->next = *head;
@@ -43,8 +43,8 @@ void LinkedList::insertNode(Node<short>** head, Node<short>* n, int index) {
     }
 }
 
-void LinkedList::deleteNode(Node<short>** head, int index) {
-    Node<short>* scan = *head;
+void LinkedList::deleteNode(LLNode<short>** head, int index) {
+    LLNode<short>* scan = *head;
     int countIndex = 0;
     if(index == 0) {    // index is of head
         scan = *head;   
@@ -60,14 +60,14 @@ void LinkedList::deleteNode(Node<short>** head, int index) {
         // If not, then the wanted index is too large.
         assert(countIndex == index - 1);
 
-        Node<short>* toDelete = scan->next;    // mark to delete
+        LLNode<short>* toDelete = scan->next;    // mark to delete
         scan->next = scan->next->next;  // skip the one to delete
         delete(toDelete);
     }
 }
 
-void LinkedList::printLL(Node<short>* head) {
-    Node<short>* node = head;
+void LinkedList::printLL(LLNode<short>* head) {
+    LLNode<short>* node = head;
     std::cout << "List: ";
     while(node != NULL) {
         if(node->next == NULL) {
@@ -85,30 +85,30 @@ int main(int argc, char** argv) {
     LinkedList ll;
 
     // create a node
-    Node<short>* n0 = new Node<short>(0);
+    LLNode<short>* n0 = new LLNode<short>(0);
 
     // assign head
     std::cout << "Initialized linked list" << std::endl;
-    Node<short>* head = n0;
+    LLNode<short>* head = n0;
     ll.printLL(head);
 
     // add a few
     std::cout << "Add nodes" << std::endl;
-    Node<short>* n1 = new Node<short>(1);
+    LLNode<short>* n1 = new LLNode<short>(1);
     ll.addNode(head, n1);
-    Node<short>* n2 = new Node<short>(2);
+    LLNode<short>* n2 = new LLNode<short>(2);
     ll.addNode(head, n2);
-    Node<short>* n3 = new Node<short>(3);
+    LLNode<short>* n3 = new LLNode<short>(3);
     ll.addNode(head, n3);
     ll.printLL(head);
 
     // insert a few
     std::cout << "Insert nodes" << std::endl;
-    Node<short>* n4 = new Node<short>(4);
+    LLNode<short>* n4 = new LLNode<short>(4);
     ll.insertNode(&head, n4, 0);    // insert at head
-    Node<short>* n5 = new Node<short>(5);
+    LLNode<short>* n5 = new LLNode<short>(5);
     ll.insertNode(&head, n5, 2);    // insert in the middle
-    Node<short>* n6 = new Node<short>(6);
+    LLNode<short>* n6 = new LLNode<short>(6);
     ll.insertNode(&head, n6, 6);
     ll.printLL(head);
 

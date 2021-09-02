@@ -11,10 +11,10 @@
 #include <cstddef>
 
 template <typename T>
-struct Node {
-    Node(const T &v) : value{v}, next{NULL} {}
+struct LLNode {
+    LLNode(const T &v) : value{v}, next{NULL} {}
     T value;
-    Node* next;
+    LLNode* next;
 };
 
 class LinkedList {
@@ -22,22 +22,22 @@ class LinkedList {
         /**
          *  Add the node @param n to the back of the linked list pointed to by @param head.
          */
-        void addNode(Node<short>* head, Node<short>* n);
+        void addNode(LLNode<short>* head, LLNode<short>* n);
 
         /**
          *  Insert the node @param n into the @param index location.
          */
-        void insertNode(Node<short>** head, Node<short>* n, int index);
+        void insertNode(LLNode<short>** head, LLNode<short>* n, int index);
 
         /**
          *  Delete the node at the @param index location.
          */
-        void deleteNode(Node<short>** head, int index);
+        void deleteNode(LLNode<short>** head, int index);
 
         /**
          *  Print the linked list pointed to by @param head.
          */
-        void printLL(Node<short>* head);
+        void printLL(LLNode<short>* head);
 };
 
 #endif  // LINKEDLIST
