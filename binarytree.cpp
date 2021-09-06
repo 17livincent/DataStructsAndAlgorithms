@@ -12,11 +12,12 @@
 #include <queue>
 #include "binarytree.h"
 
-void BinaryTree::inOrderTraversal(BTNode<char>* root) {
+template <typename T>
+void BinaryTree::inOrderTraversal(BTNode<T>* root) {
     // use a stack
-    std::stack<BTNode<char>*> st;
+    std::stack<BTNode<T>*> st;
 
-    BTNode<char>* current = root;
+    BTNode<T>* current = root;
 
     std::cout << "Tree: ";
 
@@ -37,11 +38,12 @@ void BinaryTree::inOrderTraversal(BTNode<char>* root) {
     std::cout << std::endl;
 }
 
-void BinaryTree::preOrderTraversal(BTNode<char>* root) {
+template <typename T>
+void BinaryTree::preOrderTraversal(BTNode<T>* root) {
     // use a stack
-    std::stack<BTNode<char>*> st;
+    std::stack<BTNode<T>*> st;
 
-    BTNode<char>* current = root;
+    BTNode<T>* current = root;
     st.push(current);
 
     std::cout << "Tree: ";
@@ -61,12 +63,13 @@ void BinaryTree::preOrderTraversal(BTNode<char>* root) {
     std::cout << std::endl;
 }
 
-void BinaryTree::postOrderTraversal(BTNode<char>* root) {
+template <typename T>
+void BinaryTree::postOrderTraversal(BTNode<T>* root) {
     // use two stacks
-    std::stack<BTNode<char>*> st1;
-    std::stack<BTNode<char>*> st2;
+    std::stack<BTNode<T>*> st1;
+    std::stack<BTNode<T>*> st2;
 
-    BTNode<char>* current = root;
+    BTNode<T>* current = root;
     st1.push(current);
 
     std::cout << "Tree: ";
@@ -91,11 +94,12 @@ void BinaryTree::postOrderTraversal(BTNode<char>* root) {
     std::cout << std::endl;
 }
 
-BTNode<char>* BinaryTree::depthFirstSearch(BTNode<char>* root, char target) {
+template <typename T>
+BTNode<char>* BinaryTree::depthFirstSearch(BTNode<T>* root, T target) {
     // use a stack
-    std::stack<BTNode<char>*> st;
+    std::stack<BTNode<T>*> st;
 
-    BTNode<char>* current = root;
+    BTNode<T>* current = root;
     st.push(current);
 
     while(!st.empty()) {
@@ -115,11 +119,12 @@ BTNode<char>* BinaryTree::depthFirstSearch(BTNode<char>* root, char target) {
     return current;
 }
 
-BTNode<char>* BinaryTree::breadthFirstSearch(BTNode<char>* root, char target) {
+template <typename T>
+BTNode<char>* BinaryTree::breadthFirstSearch(BTNode<T>* root, T target) {
     // use a stack
-    std::queue<BTNode<char>*> q;
+    std::queue<BTNode<T>*> q;
 
-    BTNode<char>* current = root;
+    BTNode<T>* current = root;
     q.push(current);
 
     while(!q.empty()) {

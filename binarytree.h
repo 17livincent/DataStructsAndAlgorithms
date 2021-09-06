@@ -21,27 +21,32 @@ class BinaryTree {
         /**
          *  Traverse and print the binary tree in order (left, root, right).
          */
-        void inOrderTraversal(BTNode<char>* root);
+        template <typename T>
+        void inOrderTraversal(BTNode<T>* root);
 
         /**
          *  Traverse and print the binary tree pre order (root, left, right).
          */
-        void preOrderTraversal(BTNode<char>* root);
+        template <typename T>
+        void preOrderTraversal(BTNode<T>* root);
 
         /**
          *  Traverse and print the binary tree post order (left, right, root).
          */
-        void postOrderTraversal(BTNode<char>* root);
+        template <typename T>
+        void postOrderTraversal(BTNode<T>* root);
 
         /**
          *  Use depth-first search to find the first node with the target value.
          */
-        BTNode<char>* depthFirstSearch(BTNode<char>* root, char target);
+        template <typename T>
+        BTNode<char>* depthFirstSearch(BTNode<T>* root, T target);
 
         /**
          *  Use breadth-first search to find the first node with the target value.
          */
-        BTNode<char>* breadthFirstSearch(BTNode<char>* root, char target);
+        template <typename T>
+        BTNode<char>* breadthFirstSearch(BTNode<T>* root, T target);
         
 };
 

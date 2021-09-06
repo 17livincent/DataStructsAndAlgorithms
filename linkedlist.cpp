@@ -10,8 +10,9 @@
 #include <cassert>
 #include "linkedlist.h"
 
-void LinkedList::addNode(LLNode<short>* head, LLNode<short>* n) {
-    LLNode<short>* scan = head;
+template <typename T>
+void LinkedList::addNode(LLNode<T>* head, LLNode<T>* n) {
+    LLNode<T>* scan = head;
     
     // find the last node
     while(scan->next != NULL) {
@@ -22,8 +23,9 @@ void LinkedList::addNode(LLNode<short>* head, LLNode<short>* n) {
     scan->next = n;
 }
 
-void LinkedList::insertNode(LLNode<short>** head, LLNode<short>* n, int index) {
-    LLNode<short>* scan = *head;
+template <typename T>
+void LinkedList::insertNode(LLNode<T>** head, LLNode<T>* n, int index) {
+    LLNode<T>* scan = *head;
     int countIndex = 0;
     if(index == 0) {
         n->next = *head;
@@ -43,8 +45,9 @@ void LinkedList::insertNode(LLNode<short>** head, LLNode<short>* n, int index) {
     }
 }
 
-void LinkedList::deleteNode(LLNode<short>** head, int index) {
-    LLNode<short>* scan = *head;
+template <typename T>
+void LinkedList::deleteNode(LLNode<T>** head, int index) {
+    LLNode<T>* scan = *head;
     int countIndex = 0;
     if(index == 0) {    // index is of head
         scan = *head;   
@@ -60,14 +63,15 @@ void LinkedList::deleteNode(LLNode<short>** head, int index) {
         // If not, then the wanted index is too large.
         assert(countIndex == index - 1);
 
-        LLNode<short>* toDelete = scan->next;    // mark to delete
+        LLNode<T>* toDelete = scan->next;    // mark to delete
         scan->next = scan->next->next;  // skip the one to delete
         delete(toDelete);
     }
 }
 
-void LinkedList::printLL(LLNode<short>* head) {
-    LLNode<short>* node = head;
+template <typename T>
+void LinkedList::printLL(LLNode<T>* head) {
+    LLNode<T>* node = head;
     std::cout << "List: ";
     while(node != NULL) {
         if(node->next == NULL) {

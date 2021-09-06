@@ -22,22 +22,26 @@ class LinkedList {
         /**
          *  Add the node @param n to the back of the linked list pointed to by @param head.
          */
-        void addNode(LLNode<short>* head, LLNode<short>* n);
+        template <typename T>
+        void addNode(LLNode<T>* head, LLNode<T>* n);
 
         /**
          *  Insert the node @param n into the @param index location.
          */
-        void insertNode(LLNode<short>** head, LLNode<short>* n, int index);
+        template <typename T>
+        void insertNode(LLNode<T>** head, LLNode<T>* n, int index);
 
         /**
          *  Delete the node at the @param index location.
          */
-        void deleteNode(LLNode<short>** head, int index);
+        template <typename T>
+        void deleteNode(LLNode<T>** head, int index);
 
         /**
          *  Print the linked list pointed to by @param head.
          */
-        void printLL(LLNode<short>* head);
+        template <typename T>
+        void printLL(LLNode<T>* head);
 };
 
 #endif  // LINKEDLIST
