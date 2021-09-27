@@ -64,6 +64,120 @@ void Graph::printAdjList(AdjacencyList(T)* adjListPtr) {
     }
 }
 
+template <typename T>
+GraphNode<T>* Graph::depthFirstSearch(AdjacencyList(T)* adjListPtr, GraphNode<T>* start, T goal) {
+    AdjacencyList(T) adjList = *adjListPtr;
+    // Stack
+    std::stack<GraphNode<T>*> stack;
+    // List of visited nodes
+    std::list<GraphNode<T>*> visited;
+    
+    bool goalFound = false;
+
+    // Push the start node to the stack.
+    stack.push(start);
+    // Mark start as visited.
+    visited.push_back(start);
+
+    GraphNode<T>* scan = NULL;
+    GraphNode<T>* result = NULL;
+
+    while(!stack.size() == 0 and !goalFound) {
+        scan = stack.top();
+        stack.pop();
+        // If this is the goal, stop.
+        assert(scan != NULL);
+        if(scan->value == goal) {
+            result = scan;
+            goalFound = true;
+        }
+        else {
+            // Find this node's location in the adjacency list.
+            auto neighbors = adjList.find(scan);
+            assert(neighbors != adjList.end());
+            // Iterate through the node's neighbors.  Add to stack if not visited.
+            for(auto neighbor = neighbors->second.begin(); neighbor != neighbors->second.end(); neighbor++) {
+                GraphNode<T>* thisNeighbor = neighbor->first;
+
+                // See if this neighbor has been visited.
+                bool inVisited = false;
+                for(GraphNode<T>* test : visited) {
+                    if(thisNeighbor == test) {
+                        inVisited = true;
+                        break;
+                        std::cout << "Visited" << std::endl;
+                    }
+                }
+
+                // Add to stack and visited if not.
+                if(!inVisited) {
+                    // Add to stack and visited.
+                    stack.push(thisNeighbor);
+                    visited.push_back(thisNeighbor);
+                }
+            }
+        }
+    }
+    return result;
+}
+
+template <typename T>
+GraphNode<T>* Graph::breadthFirstSearch(AdjacencyList(T)* adjListPtr, GraphNode<T>* start, T goal) {
+    AdjacencyList(T) adjList = *adjListPtr;
+    std::queue<GraphNode<T>*> queue;
+    // List of visited nodes
+    std::list<GraphNode<T>*> visited;
+    
+    bool goalFound = false;
+
+    // Push the start node to the stack.
+    queue.push(start);
+    // Mark start as visited.
+    visited.push_back(start);
+
+    GraphNode<T>* scan = NULL;
+    GraphNode<T>* result = NULL;
+
+    while(!queue.size() == 0 and !goalFound) {
+        scan = queue.front();
+        queue.pop();
+        // If this is the goal, stop.
+        assert(scan != NULL);
+        if(scan->value == goal) {
+            result = scan;
+            goalFound = true;
+        }
+        else {
+            // Find this node's location in the adjacency list.
+            auto neighbors = adjList.find(scan);
+            assert(neighbors != adjList.end());
+            // Iterate through the node's neighbors.  Add to stack if not visited.
+            for(auto neighbor = neighbors->second.begin(); neighbor != neighbors->second.end(); neighbor++) {
+                GraphNode<T>* thisNeighbor = neighbor->first;
+
+                // See if this neighbor has been visited.
+                bool inVisited = false;
+                for(GraphNode<T>* test : visited) {
+                    if(thisNeighbor == test) {
+                        inVisited = true;
+                        break;
+                        std::cout << "Visited" << std::endl;
+                    }
+                }
+
+                // Add to stack and visited if not.
+                if(!inVisited) {
+                    // Add to stack and visited.
+                    queue.push(thisNeighbor);
+                    visited.push_back(thisNeighbor);
+                }
+            }
+        }
+    }
+    return result;
+    
+}
+
 int main(int argc, char** argv) {    
     /*
         Undirected graph
@@ -115,6 +229,26 @@ int main(int argc, char** argv) {
     graph.addEdge(&list, &h, &b, 11, true); graph.addEdge(&list, &h, &g, 1, true); graph.addEdge(&list, &h, &i, 7, true);
     graph.addEdge(&list, &i, &c, 2, true); graph.addEdge(&list, &i, &g, 6, true); graph.addEdge(&list, &i, &h, 7, true);
     graph.printAdjList(&list);
+
+    // Test DFS
+    GraphNode<char>* dfsB = graph.depthFirstSearch(&list, &a, 'B');
+    assert(dfsB != NULL);
+    std::cout << "DFS found: " << dfsB->value << std::endl;
+    GraphNode<char>* dfsI = graph.depthFirstSearch(&list, &a, 'I');
+    assert(dfsI != NULL);
+    std::cout << "DFS found: " << dfsI->value << std::endl;
+    GraphNode<char>* dfsH = graph.depthFirstSearch(&list, &a, 'H');
+    std::cout << "DFS found: " << dfsH->value << std::endl;
+
+    // Test BFS
+    GraphNode<char>* bfsB = graph.breadthFirstSearch(&list, &a, 'B');
+    assert(bfsB != NULL);
+    std::cout << "BFS found: " << bfsB->value << std::endl;
+    GraphNode<char>* bfsI = graph.breadthFirstSearch(&list, &a, 'I');
+    assert(bfsI != NULL);
+    std::cout << "BFS found: " << bfsI->value << std::endl;
+    GraphNode<char>* bfsH = graph.breadthFirstSearch(&list, &a, 'H');
+    std::cout << "BFS found: " << bfsH->value << std::endl;
 
     return 0;
 }
